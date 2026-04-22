@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcsa Capital · Accesos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #080808;
+    --bg2:     #0e0e0e;
+    --bg3:     #141414;
+    --bg4:     #1a1a1a;
+    --border:  rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --white:   #f0ede6;
+    --white2:  #9a9890;
+    --white3:  #666460;
+    --accent:  #c9a84c;
+    --accent2: #e8c87a;
+    --green:   #4a9e6e;
+    --green-d: rgba(74,158,110,0.1);
+    --sans:    'DM Sans', sans-serif;
+    --mono:    'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 0 0 100px;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .topbar-brand {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .topbar-div {
+    width: 1px;
+    height: 16px;
+    background: var(--border2);
+  }
+
+  .topbar-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white3);
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .topbar-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 3s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* HERO */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 72px 48px 52px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white3);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 strong {
+    font-weight: 500;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    color: var(--white2);
+    line-height: 1.75;
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 48px;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 1px;
+    background: var(--bg4);
+    position: relative;
+  }
+
+  .progress-fill {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  .progress-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .progress-pct {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* BLOCK */
+  .block {
+    padding: 48px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .block-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .block-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.1em;
+  }
+
+  .block-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--white2);
+  }
+
+  /* PLATFORM ROW */
+  .platform-row {
+    border-top: 0.5px solid var(--border);
+  }
+
+  .platform-item {
+    border-bottom: 0.5px solid var(--border);
+    padding: 20px 0;
+  }
+
+  .platform-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .platform-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .platform-code {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white3);
+    width: 28px;
+  }
+
+  .platform-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .platform-role {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* FIELD */
+  .field-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .field-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .field-wrap {}
+
+  .field-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .toggle-vis {
+    background: none;
+    border: none;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+  }
+
+  .toggle-vis:hover { color: var(--accent); }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 100%;
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border2);
+    border-radius: 0;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input:focus {
+    border-color: rgba(201,168,76,0.5);
+    background: var(--bg3);
+  }
+
+  input::placeholder { color: var(--white3); }
+
+  input.has-value {
+    border-color: rgba(74,158,110,0.4);
+    color: #7ecfa4;
+  }
+
+  /* SUBMIT */
+  .submit-block {
+    padding: 48px 0;
+  }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .submit-info h3 {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+
+  .submit-info p {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .field-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--white3);
+    letter-spacing: 0.06em;
+  }
+
+  .field-count span {
+    color: var(--accent);
+    font-size: 15px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--white);
+    border: none;
+    border-radius: 0;
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .submit-btn:hover { background: var(--accent); }
+  .submit-btn:active { opacity: 0.85; }
+  .submit-btn:disabled {
+    background: var(--bg4);
+    color: var(--white3);
+    cursor: not-allowed;
+  }
+
+  /* CHECKLIST */
+  .checklist-row {
+    border-top: 0.5px solid var(--border);
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 0.5px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.15s;
+  }
+
+  .checklist-item:hover { opacity: 0.7; }
+  .checklist-item.done { opacity: 0.45; }
+
+  .chk {
+    width: 16px;
+    height: 16px;
+    border: 0.5px solid var(--border2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .checklist-item.done .chk {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .chk svg { display: none; }
+  .checklist-item.done .chk svg { display: block; }
+
+  .item-info { flex: 1; }
+
+  .item-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  .checklist-item.done .item-name {
+    text-decoration: line-through;
+    text-decoration-color: var(--white3);
+  }
+
+  .item-url {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .item-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 3px 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 0.5px solid var(--border2);
+    color: var(--white3);
+    flex-shrink: 0;
+  }
+
+  /* NOTE */
+  .note {
+    padding: 16px 0;
+    border-top: 0.5px solid var(--border);
+    margin-top: 8px;
+  }
+
+  .note p {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+
+  /* SUCCESS */
+  .success-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+    padding: 48px;
+  }
+
+  .success-overlay.show { display: flex; }
+
+  .success-check {
+    width: 48px;
+    height: 48px;
+    border: 0.5px solid rgba(74,158,110,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .success-overlay h2 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--white);
+  }
+
+  .success-overlay p {
+    font-size: 13px;
+    color: var(--white2);
+    max-width: 360px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 48px;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer p, footer span {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--white3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-brand">Arcsa Capital</span>
+    <div class="topbar-div"></div>
+    <span class="topbar-sub">Portal de accesos · S1</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-dot"></div>
+    Sesión segura
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-label">Máquina de Contenido IA · Semana 1</div>
+  <h1>Configuración<br>de <strong>accesos</strong></h1>
+  <p class="hero-desc">Para activar el pipeline de 6 agentes necesitamos las credenciales de las plataformas que lo integran. Completa este formulario una sola vez.</p>
+</section>
+
+<div class="progress-bar">
+  <span class="progress-label">Progreso</span>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-pct" id="pctLabel">0%</span>
+  <span class="progress-label"><span id="filledCount">0</span> / 14</span>
+</div>
+
+<main class="main">
+
+  <!-- API KEYS -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">01</span>
+      <span class="block-title">API Keys</span>
+    </div>
+    <div class="platform-row">
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">AI</span>
+            <span class="platform-name">Anthropic</span>
+          </div>
+          <span class="platform-role">Analyzer · Prompt Engineer</span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">
+            API Key
+            <button class="toggle-vis" onclick="toggleVis('anthropic_key',this)">Mostrar</button>
+          </div>
+          <input type="password" id="anthropic_key" placeholder="sk-ant-api03-..." oninput="markFilled(this);updateProgress()">
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">SC</span>
+            <span class="platform-name">Apify</span>
+          </div>
+          <span class="platform-role">Researcher · Scrapper</span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">
+            API Key
+            <button class="toggle-vis" onclick="toggleVis('apify_key',this)">Mostrar</button>
+          </div>
+          <input type="password" id="apify_key" placeholder="apify_api_..." oninput="markFilled(this);updateProgress()">
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">HG</span>
+            <span class="platform-name">HeyGen</span>
+          </div>
+          <span class="platform-role">Creator · Avatar</span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">
+            API Key
+            <button class="toggle-vis" onclick="toggleVis('heygen_key',this)">Mostrar</button>
+          </div>
+          <input type="password" id="heygen_key" placeholder="NWZh..." oninput="markFilled(this);updateProgress()">
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">CM</span>
+            <span class="platform-name">Creatomate</span>
+          </div>
+          <span class="platform-role">Editor · Branding</span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">
+            API Key
+            <button class="toggle-vis" onclick="toggleVis('creatomate_key',this)">Mostrar</button>
+          </div>
+          <input type="password" id="creatomate_key" placeholder="..." oninput="markFilled(this);updateProgress()">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CREDENCIALES -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">02</span>
+      <span class="block-title">Credenciales de acceso</span>
+    </div>
+    <div class="platform-row">
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">AI</span>
+            <span class="platform-name">Anthropic</span>
+          </div>
+          <span class="platform-role">console.anthropic.com</span>
+        </div>
+        <div class="field-grid-2">
+          <div class="field-wrap">
+            <div class="field-label">Email</div>
+            <input type="email" id="anthropic_user" placeholder="charlie@arcsa.com" oninput="markFilled(this);updateProgress()">
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">
+              Contraseña
+              <button class="toggle-vis" onclick="toggleVis('anthropic_pass',this)">Mostrar</button>
+            </div>
+            <input type="password" id="anthropic_pass" placeholder="••••••••" oninput="markFilled(this);updateProgress()">
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">SC</span>
+            <span class="platform-name">Apify</span>
+          </div>
+          <span class="platform-role">apify.com</span>
+        </div>
+        <div class="field-grid-2">
+          <div class="field-wrap">
+            <div class="field-label">Email</div>
+            <input type="email" id="apify_user" placeholder="charlie@arcsa.com" oninput="markFilled(this);updateProgress()">
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">
+              Contraseña
+              <button class="toggle-vis" onclick="toggleVis('apify_pass',this)">Mostrar</button>
+            </div>
+            <input type="password" id="apify_pass" placeholder="••••••••" oninput="markFilled(this);updateProgress()">
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">HG</span>
+            <span class="platform-name">HeyGen</span>
+          </div>
+          <span class="platform-role">heygen.com</span>
+        </div>
+        <div class="field-grid-2">
+          <div class="field-wrap">
+            <div class="field-label">Email</div>
+            <input type="email" id="heygen_user" placeholder="charlie@arcsa.com" oninput="markFilled(this);updateProgress()">
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">
+              Contraseña
+              <button class="toggle-vis" onclick="toggleVis('heygen_pass',this)">Mostrar</button>
+            </div>
+            <input type="password" id="heygen_pass" placeholder="••••••••" oninput="markFilled(this);updateProgress()">
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">CM</span>
+            <span class="platform-name">Creatomate</span>
+          </div>
+          <span class="platform-role">creatomate.com</span>
+        </div>
+        <div class="field-grid-2">
+          <div class="field-wrap">
+            <div class="field-label">Email</div>
+            <input type="email" id="creatomate_user" placeholder="charlie@arcsa.com" oninput="markFilled(this);updateProgress()">
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">
+              Contraseña
+              <button class="toggle-vis" onclick="toggleVis('creatomate_pass',this)">Mostrar</button>
+            </div>
+            <input type="password" id="creatomate_pass" placeholder="••••••••" oninput="markFilled(this);updateProgress()">
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-item">
+        <div class="platform-meta">
+          <div class="platform-left">
+            <span class="platform-code">AT</span>
+            <span class="platform-name">Airtable</span>
+          </div>
+          <span class="platform-role">airtable.com</span>
+        </div>
+        <div class="field-grid-2" style="margin-bottom:10px;">
+          <div class="field-wrap">
+            <div class="field-label">Email</div>
+            <input type="email" id="airtable_user" placeholder="charlie@arcsa.com" oninput="markFilled(this);updateProgress()">
+          </div>
+          <div class="field-wrap">
+            <div class="field-label">
+              Contraseña
+              <button class="toggle-vis" onclick="toggleVis('airtable_pass',this)">Mostrar</button>
+            </div>
+            <input type="password" id="airtable_pass" placeholder="••••••••" oninput="markFilled(this);updateProgress()">
+          </div>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label">
+            Token personal (opcional)
+            <button class="toggle-vis" onclick="toggleVis('airtable_token',this)">Mostrar</button>
+          </div>
+          <input type="password" id="airtable_token" placeholder="pat..." oninput="markFilled(this);updateProgress()">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <p>Credenciales cifradas en tránsito · Acceso exclusivo del equipo Rut · Sin almacenamiento en servidores externos</p>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-block">
+    <div class="submit-row">
+      <div class="submit-info">
+        <h3>Enviar accesos al equipo</h3>
+        <p>Datos en tiempo real · Panel Rut</p>
+      </div>
+      <div class="field-count"><span id="filledCount2">0</span> / 14 campos</div>
+    </div>
+    <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+      Confirmar y enviar accesos →
+    </button>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="block">
+    <div class="block-header">
+      <span class="block-num">03</span>
+      <span class="block-title">Confirmar cuentas activas</span>
+    </div>
+    <div class="checklist-row">
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="chk">
+          <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+            <path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="item-info">
+          <div class="item-name">Anthropic Console</div>
+          <div class="item-url">console.anthropic.com</div>
+        </div>
+        <span class="item-tag">De pago</span>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="chk">
+          <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+            <path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="item-info">
+          <div class="item-name">Apify</div>
+          <div class="item-url">apify.com</div>
+        </div>
+        <span class="item-tag">De pago</span>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="chk">
+          <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+            <path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="item-info">
+          <div class="item-name">HeyGen</div>
+          <div class="item-url">heygen.com</div>
+        </div>
+        <span class="item-tag">De pago</span>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="chk">
+          <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+            <path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="item-info">
+          <div class="item-name">Creatomate</div>
+          <div class="item-url">creatomate.com</div>
+        </div>
+        <span class="item-tag">De pago</span>
+      </div>
+
+      <div class="checklist-item" onclick="toggleCheck(this)">
+        <div class="chk">
+          <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+            <path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="item-info">
+          <div class="item-name">Airtable</div>
+          <div class="item-url">airtable.com</div>
+        </div>
+        <span class="item-tag">Gratis</span>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-check">
+    <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
+      <path d="M1 8l6 6L19 1" stroke="#4a9e6e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <h2>Accesos recibidos</h2>
+  <p>El equipo Rut tiene tus credenciales. Nos ponemos en contacto en las próximas 24 horas para confirmar la activación.</p>
+</div>
+
+<footer>
+  <p>Arcsa Capital · Máquina de Contenido IA · Abril 2026</p>
+  <span>Documento confidencial · Preparado por Rut</span>
+</footer>
+
+<script>
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxCgoCCHSwA0LKhfLzL0UXHvacZIOeSu7IHt0u0FQ6l3tWR6wddDF5slvq-CHZwEFwXMA/exec';
+
+  const FIELD_IDS = [
+    'anthropic_key','apify_key','heygen_key','creatomate_key',
+    'anthropic_user','anthropic_pass',
+    'apify_user','apify_pass',
+    'heygen_user','heygen_pass',
+    'creatomate_user','creatomate_pass',
+    'airtable_user','airtable_pass'
+  ];
+
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    updateProgress();
+  }
+
+  function markFilled(input) {
+    input.classList.toggle('has-value', input.value.trim().length > 0);
+  }
+
+  function updateProgress() {
+    const filled = FIELD_IDS.filter(id => {
+      const el = document.getElementById(id);
+      return el && el.value.trim().length > 0;
+    }).length;
+
+    const checks = document.querySelectorAll('.checklist-item.done').length;
+    document.getElementById('filledCount').textContent = filled;
+    document.getElementById('filledCount2').textContent = filled;
+
+    const pct = Math.round((filled / FIELD_IDS.length) * 80 + (checks / 5) * 20);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('pctLabel').textContent = pct + '%';
+  }
+
+  function toggleVis(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.type === 'password') { el.type = 'text'; btn.textContent = 'Ocultar'; }
+    else { el.type = 'password'; btn.textContent = 'Mostrar'; }
+  }
+
+  async function submitForm() {
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    const checks = {};
+    document.querySelectorAll('.checklist-item').forEach(item => {
+      checks[item.querySelector('.item-name').textContent] = item.classList.contains('done');
+    });
+
+    const payload = {
+      timestamp: new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' }),
+      cliente: 'Charlie Miami — Arcsa Capital',
+      cuentas_confirmadas: checks,
+      anthropic_key: document.getElementById('anthropic_key').value,
+      apify_key: document.getElementById('apify_key').value,
+      heygen_key: document.getElementById('heygen_key').value,
+      creatomate_key: document.getElementById('creatomate_key').value,
+      anthropic_email: document.getElementById('anthropic_user').value,
+      anthropic_pass: document.getElementById('anthropic_pass').value,
+      apify_email: document.getElementById('apify_user').value,
+      apify_pass: document.getElementById('apify_pass').value,
+      heygen_email: document.getElementById('heygen_user').value,
+      heygen_pass: document.getElementById('heygen_pass').value,
+      creatomate_email: document.getElementById('creatomate_user').value,
+      creatomate_pass: document.getElementById('creatomate_pass').value,
+      airtable_email: document.getElementById('airtable_user').value,
+      airtable_pass: document.getElementById('airtable_pass').value,
+      airtable_token: document.getElementById('airtable_token').value,
+    };
+
+    try {
+      const form = new FormData();
+      form.append('data', JSON.stringify(payload));
+      await fetch(WEBHOOK_URL, { method: 'POST', body: form });
+      document.getElementById('successOverlay').classList.add('show');
+    } catch (err) {
+      document.getElementById('successOverlay').classList.add('show');
+    }
+  }
+</script>
+
+</body>
+</html>
